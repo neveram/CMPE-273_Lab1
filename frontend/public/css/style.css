@@ -1,0 +1,85 @@
+a.default-button {
+  background: #ffffff;
+  border-radius: 0px;
+  font-size: smaller;
+  color: rgb(0, 0, 0) !important;
+  box-shadow: none;
+  border: 2px solid;
+  
+  text-shadow: none;
+  padding: 8px 20px;
+  transition: background-color 0.25s;
+}
+
+a.default-button:focus,
+a.default-button:hover {
+  background: #ffffff;
+}
+
+#create-shop-search {
+  width: 400px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.shop-content {
+  text-align: center;
+  margin-top: 10px;
+}
+
+body.active-modal {
+  overflow-y: hidden;
+  /* background-image: "imagesback.png"; */
+}
+
+.btn-modal {
+  padding: 10px 20px;
+  display: block;
+  margin: 100px auto 0;
+  font-size: 18px;
+}
+
+.modal-custom,
+.overlay-custom {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay-custom {
+  background: rgba(49, 49, 49, 0.8);
+}
+.modal-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #747272;
+  padding: 14px 28px;
+  border-radius: 3px;
+  max-width: 600px;
+  min-width: 300px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
+}
+
+h3.soldout {
+  color: #ff0000;
+  font-size: smaller;
+  font-style:oblique;
+}
+
+.favourites {
+  margin-top: 5px;
+}
+
