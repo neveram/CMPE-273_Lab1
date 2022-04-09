@@ -25,7 +25,7 @@ export default function Home({ userData }) {
     getItems();
     console.log(items);
   }, [filter, sort]);
-// search
+
   function compareValues(key, order = "asc") {
     return function innerSort(a, b) {
       if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
