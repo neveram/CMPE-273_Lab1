@@ -104,7 +104,7 @@ app.post("/login", function (request, response) {
 });
 
 app.post("/register", function (request, response) {
-  // Capture the input fields
+  
   let username = request.body.username;
   let email = request.body.email;
   let password = request.body.password;
