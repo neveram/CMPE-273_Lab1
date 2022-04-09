@@ -531,7 +531,7 @@ app.get("/getfavourites", function (request, response) {
     }
   );
 });
-
+//search Functionality
 app.get("/getsearchitems", function (request, response) {
   console.log("request: ", request.query);
   const filter = request.query.filter;
