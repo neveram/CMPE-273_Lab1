@@ -18,7 +18,7 @@ const db = mysql.createConnection({
 
   
 });
-//image
+
 const fileStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
     console.log(req);
@@ -37,7 +37,7 @@ const fileStorageEngine = multer.diskStorage({
     cb(null, file.fieldname + ".jpeg");
   },
 });
-//image Upload
+
 const upload = multer({ storage: fileStorageEngine });
 
 app.use(express.static("public"));
@@ -101,7 +101,7 @@ app.post("/login", function (request, response) {
     response.end();
   }
 });
-//register
+
 app.post("/register", function (request, response) {
   // Capture the input fields
   let username = request.body.username;
