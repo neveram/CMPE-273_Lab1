@@ -29,7 +29,7 @@ export default function Home({ userData }) {
   function compareValues(key, order = "asc") {
     return function innerSort(a, b) {
       if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
-        // property doesn't exist on either object
+        
         return 0;
       }
 
