@@ -102,7 +102,7 @@ app.post("/login", function (request, response) {
     response.end();
   }
 });
-
+// app.post
 app.post("/register", function (request, response) {
   
   let username = request.body.username;
