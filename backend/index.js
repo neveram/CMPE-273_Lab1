@@ -18,7 +18,7 @@ const db = mysql.createConnection({
 
   
 });
-
+//image
 const fileStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
     console.log(req);
