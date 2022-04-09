@@ -7,7 +7,7 @@ const multer = require("multer");
 const fs = require("fs");
 // comment
 const app = express();
-//db setup
+//database setup
 
 const db = mysql.createConnection({
 
