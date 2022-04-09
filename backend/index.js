@@ -101,7 +101,7 @@ app.post("/login", function (request, response) {
     response.end();
   }
 });
-
+//register
 app.post("/register", function (request, response) {
   // Capture the input fields
   let username = request.body.username;
