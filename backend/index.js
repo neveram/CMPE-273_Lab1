@@ -37,7 +37,7 @@ const fileStorageEngine = multer.diskStorage({
     cb(null, file.fieldname + ".jpeg");
   },
 });
-
+//image Upload
 const upload = multer({ storage: fileStorageEngine });
 
 app.use(express.static("public"));
