@@ -16,6 +16,8 @@ export default function Cart() {
 
   useEffect(() => {
     async function getCart() {
+      axios.defaults.headers.common["authorization"] =
+        localStorage.getItem("token");
       const response = await axios.get(serverUrl + "/getcart", {
         params: { user: Cookies.get("username") },
       });
@@ -27,9 +29,11 @@ export default function Cart() {
     }
 
     getCart();
-  }, [item]);
+  }, [item, empty]);
   useEffect(() => {
     async function getTotal() {
+      axios.defaults.headers.common["authorization"] =
+        localStorage.getItem("token");
       const response = await axios.get(serverUrl + "/getcarttotal", {
         params: { user: Cookies.get("username") },
       });
@@ -48,6 +52,8 @@ export default function Cart() {
       items: items,
       user: Cookies.get("username"),
     };
+    axios.defaults.headers.common["authorization"] =
+      localStorage.getItem("token");
     axios.post(serverUrl + "/addpurchased", data).then((response) => {
       if (response.data === "SUCCESS") {
         console.log("Status Code : ", response.status);
@@ -73,10 +79,13 @@ export default function Cart() {
                     <thead>
                       <tr>
                         <th scope="col" className="border-0 bg-light">
-                          <div className="p-2 px-3 text-uppercase">Order</div>
+                          <div className="p-2 px-3 text-uppercase">Product</div>
                         </th>
                         <th scope="col" className="border-0 bg-light">
                           <div className="py-2 text-uppercase">Price</div>
+                        </th>
+                        <th scope="col" className="border-0 bg-light">
+                          <div className="py-2 text-uppercase">Gift</div>
                         </th>
                         <th scope="col" className="border-0 bg-light">
                           <div className="py-2 text-uppercase">Quantity</div>
@@ -86,19 +95,24 @@ export default function Cart() {
                         </th>
                       </tr>
                     </thead>
-                    <Item item={item} setItem={setItem} />
+                    <Item
+                      items={items}
+                      setItems={setItems}
+                      item={item}
+                      setItem={setItem}
+                    />
                   </table>
                 </div>
               </>
             ) : (
               <>
-                {/* <h1>Nothing in here.</h1>
-                <p>Till then, you can check previous purchases.</p> */}
+                <h1>Nothing in here.</h1>
+                <p>Till then, you can check previous purchases.</p>
                 <Link
                   to="/purchased"
                   className="btn btn-dark rounded-pill py-2 btn-block default-button"
                 >
-                  Order History
+                  Previous Purchases
                 </Link>
               </>
             )}
@@ -108,7 +122,7 @@ export default function Cart() {
           <div className="row bg-white rounded shadow-sm">
             <div className="col-lg-6 p-5 bg-white rounded shadow-sm offset-6">
               <div className="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">
-               Order Details
+                Order summary
               </div>
               <div className="p-4">
                 <ul className="list-unstyled mb-4">
@@ -125,7 +139,7 @@ export default function Cart() {
                   className="btn btn-dark rounded-pill py-2 btn-block default-button"
                   onClick={addpurchased}
                 >
-                  Pay
+                  Proceed to checkout
                 </Link>
               </div>
             </div>

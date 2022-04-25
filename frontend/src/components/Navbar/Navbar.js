@@ -32,25 +32,25 @@ export default function Navbar(props) {
           <div className="me-auto search-form"></div>
         )}
         <Link
-          className="btn btn-outline-dark"
+          className="btn btn-light action-button"
           role="button"
           to="/favourites"
         >
           Favourites
         </Link>
 
-        <Link className="btn btn-outline-dark" role="button" to="/cart">
+        <Link className="btn btn-light action-button" role="button" to="/cart">
           Cart
         </Link>
         <Link
-          className="btn btn-outline-dark"
+          className="btn btn-light action-button"
           role="button"
           to="/profile"
         >
           User
         </Link>
         <Link
-          className="btn btn-outline-dark"
+          className="btn btn-light action-button"
           role="button"
           to="/signout"
         >
@@ -63,14 +63,14 @@ export default function Navbar(props) {
       <>
         <div className="offset-10"></div>
         <Link
-          className="btn btn-outline-dark"
+          className="btn btn-light action-button offset "
           role="button"
           to="/signin"
         >
           Sign in
         </Link>
         <Link
-          className="btn btn-outline-dark"
+          className="btn btn-light action-button"
           role="button"
           to="/register"
         >
@@ -83,7 +83,7 @@ export default function Navbar(props) {
     <>
       <nav className="navbar navbar-light navbar-expand-lg navigation-clean-search">
         <div className="container">
-          <Link className="navbar-brand" style={{color: "#ff650b"}} to="/">
+          <Link className="navbar-brand" to="/">
             Etsy
           </Link>
           <button

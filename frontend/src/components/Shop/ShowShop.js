@@ -13,6 +13,8 @@ export default function ShowShop() {
   const [owner, setOwner] = useState("");
   useEffect(() => {
     async function getOwner() {
+      axios.defaults.headers.common["authorization"] =
+        localStorage.getItem("token");
       const response = await axios.get(serverUrl + "/getshopowner", {
         params: { shop: shop },
       });

@@ -15,6 +15,8 @@ export default function ShowShopItems(props) {
 
   useEffect(() => {
     async function getItems() {
+      axios.defaults.headers.common["authorization"] =
+        localStorage.getItem("token");
       const response = await axios.get(serverUrl + "/getitems", {
         params: { shop: myshop },
       });

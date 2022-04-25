@@ -68,7 +68,7 @@ export default function Search(props) {
                     href="#nogo"
                     onClick={() => sortItems("sold")}
                   >
-                    Sold
+                    Sales
                   </a>
                 </div>
               )}

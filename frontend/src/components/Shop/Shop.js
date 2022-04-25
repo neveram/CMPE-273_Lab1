@@ -27,6 +27,8 @@ export default function Shop() {
 
   useEffect(() => {
     async function getUserData() {
+      axios.defaults.headers.common["authorization"] =
+        localStorage.getItem("token");
       const response = await axios.get(serverUrl + "/getuserdata", {
         params: { user: Cookies.get("username") },
       });

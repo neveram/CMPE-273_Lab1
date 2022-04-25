@@ -36,7 +36,7 @@ export default function Favourites() {
           </div>
         </div>
         <hr />
-        <div className="row mt-4">
+        <div className="row mt-3">
           <FavouritesProductList />
         </div>
       </div>

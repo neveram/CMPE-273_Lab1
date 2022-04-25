@@ -17,6 +17,8 @@ export default function Home({ userData }) {
   let search = searchParams.get("search");
   useEffect(() => {
     async function getItems() {
+      axios.defaults.headers.common["authorization"] =
+        localStorage.getItem("token");
       const response = await axios.get(serverUrl + "/getsearchitems", {
         params: { keyword: search, filter: filter },
       });
@@ -29,7 +31,7 @@ export default function Home({ userData }) {
   function compareValues(key, order = "asc") {
     return function innerSort(a, b) {
       if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
-        
+        // property doesn't exist on either object
         return 0;
       }
 
@@ -63,21 +65,21 @@ export default function Home({ userData }) {
           />
         ) : (
           <div>
-            <div className="row" style={{backgroundImage: 'url("https://i.ibb.co/TvSZFQ4/Etsy.png")'}}>
-              <div className="col-md-4 mt-3 offset-4" >
-                <h1 style={{color: "#3a3a3a"}}><br/><br/><br/>Welcome</h1>
-                <br/>
-                <br/>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-12 mt-3">
-                <h1>Items</h1>
-              </div>
+          <div className="row" style={{backgroundImage: 'url("https://i.ibb.co/TvSZFQ4/Etsy.png")'}}>
+            <div className="col-md-4 mt-3 offset-4" >
+              <h1 style={{color: "#3a3a3a"}}><br/><br/><br/>Welcome</h1>
+              <br/>
+              <br/>
             </div>
           </div>
-        )}
-        <div className="row mt-1">
+          <div className="row">
+            <div className="col-md-12 mt-3">
+              <h1>Items</h1>
+            </div>
+          </div>
+        </div>
+      )}
+        <div className="row mt-2">
           {search ? (
             <SearchProductList
               items={items}
@@ -91,6 +93,7 @@ export default function Home({ userData }) {
           )}
         </div>
       </div>
+      <Footer />
     </>
   );
 }

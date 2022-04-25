@@ -19,9 +19,11 @@ export default function ProductPage() {
 
   const addfavourites = () => {
     const data = {
-      id: item.id,
+      id: item._id,
       user: Cookies.get("username"),
     };
+    axios.defaults.headers.common["authorization"] =
+      localStorage.getItem("token");
     axios.post(serverUrl + "/addfavourites", data).then((response) => {
       if (response.data === "SUCCESS") {
         console.log("Status Code : ", response.status);
@@ -36,11 +38,13 @@ export default function ProductPage() {
 
   const addcart = () => {
     const data = {
-      id: item.id,
+      id: item._id,
       user: Cookies.get("username"),
       quantity: quantity,
       rquantity: item.quantity - quantity,
     };
+    axios.defaults.headers.common["authorization"] =
+      localStorage.getItem("token");
     axios.post(serverUrl + "/addcart", data).then((response) => {
       if (response.data === "SUCCESS") {
         console.log("Status Code : ", response.status);

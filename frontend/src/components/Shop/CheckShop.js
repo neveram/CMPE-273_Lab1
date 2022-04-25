@@ -16,6 +16,8 @@ export default function CheckShop() {
       shop: shop,
       username: Cookies.get("username"),
     };
+    axios.defaults.headers.common["authorization"] =
+      localStorage.getItem("token");
     axios.post(serverUrl + "/checkshop", data).then((response) => {
       if (response.data === "SUCCESS") {
         setRedirect(true);

@@ -7,6 +7,8 @@ export default function Sales({ shop }) {
   const [items, setItems] = useState([[]]);
   useEffect(() => {
     async function getItems() {
+      axios.defaults.headers.common["authorization"] =
+        localStorage.getItem("token");
       const response = await axios.get(serverUrl + "/getitems", {
         params: { shop: shop },
       });

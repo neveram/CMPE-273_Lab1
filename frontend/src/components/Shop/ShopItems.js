@@ -23,8 +23,10 @@ export default function ShopItems(props) {
   };
 
   const deleteItem = (item) => {
+    axios.defaults.headers.common["authorization"] =
+      localStorage.getItem("token");
     axios.delete(serverUrl + "/deleteitem", {
-      data: { id: item.id },
+      data: { id: item._id },
     });
     props.setForce(!props.force);
   };
@@ -46,6 +48,8 @@ export default function ShopItems(props) {
 
     //set the with credentials to true
     axios.defaults.withCredentials = true;
+    axios.defaults.headers.common["authorization"] =
+      localStorage.getItem("token");
     //make a post request with the user data
     axios.post(serverUrl + "/edititem", bodyFormData).then((response) => {
       if (response.data === "SUCCESS") {
@@ -59,6 +63,8 @@ export default function ShopItems(props) {
   };
   useEffect(() => {
     async function getItems() {
+      axios.defaults.headers.common["authorization"] =
+        localStorage.getItem("token");
       const response = await axios.get(serverUrl + "/getitems", {
         params: { shop: myshop },
       });
@@ -66,7 +72,7 @@ export default function ShopItems(props) {
     }
     getItems();
     // console.log(items);
-  }, [edit, props.force, item.id]);
+  }, [edit, props.force, item._id]);
 
   const fill = (item) => {
     setEditImage(item.image);
@@ -216,7 +222,7 @@ export default function ShopItems(props) {
               <a
                 className="btn default-button mt-3"
                 role="button"
-                onClick={() => edititem(item.id)}
+                onClick={() => edititem(item._id)}
               >
                 Edit
               </a>

@@ -5,6 +5,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { Navigate } from "react-router";
 import { serverUrl } from "../serverurl";
+import jwt_decode from "jwt-decode";
 
 export default function SignIn() {
   const [username, setUsername] = useState("");
@@ -23,12 +24,20 @@ export default function SignIn() {
     axios.defaults.withCredentials = true;
     //make a post request with the user data
     axios.post(serverUrl + "/login", data).then((response) => {
-      if (response.data === "SUCCESS") {
+      if (response.data.split(" ")[0] === "SUCCESS") {
         setAuth(true);
         console.log("Status Code : ", response.status);
         Cookies.set("username", username, { expires: 1 });
         Cookies.set("password", password, { expires: 1 });
         Cookies.set("auth", true, { expires: 1 });
+        console.log(response.data.split(" ")[2]);
+        var decoded = jwt_decode(response.data.split(" ")[2]);
+        localStorage.setItem(
+          "token",
+          response.data.split(" ").slice(1).join(" ")
+        );
+        console.log(decoded);
+        console.log(decoded.username);
         setRedirect(true);
       } else {
         setAuth(false);

@@ -12,6 +12,8 @@ export default function FavouritesProductList() {
 
   useEffect(() => {
     async function getFavourites() {
+      axios.defaults.headers.common["authorization"] =
+        localStorage.getItem("token");
       const response = await axios.get(serverUrl + "/getfavourites", {
         params: { user: Cookies.get("username") },
       });
@@ -27,7 +29,7 @@ export default function FavouritesProductList() {
 
   const removefavourite = (item) => {
     axios.delete(serverUrl + "/removefavourite", {
-      data: { id: item.id, username: Cookies.get("username") },
+      data: { id: item._id, username: Cookies.get("username") },
     });
     setRemove(item);
   };

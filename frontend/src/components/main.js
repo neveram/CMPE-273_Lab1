@@ -17,12 +17,14 @@ import Favourites from "./Favourites/Favourites";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { serverUrl } from "./serverurl";
-//added components
+
 //Create a Main Component
 const Main = () => {
   const [userData, setUserData] = useState([]);
   useEffect(() => {
     async function getUserData() {
+      axios.defaults.headers.common["authorization"] =
+        localStorage.getItem("token");
       const response = await axios.get(serverUrl + "/getuserdata", {
         params: { user: Cookies.get("username") },
       });

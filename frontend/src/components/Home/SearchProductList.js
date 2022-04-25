@@ -15,6 +15,8 @@ export default function SearchProductList({ items }) {
       id: id,
       user: Cookies.get("username"),
     };
+    axios.defaults.headers.common["authorization"] =
+      localStorage.getItem("token");
     axios.post(serverUrl + "/addfavourites", data).then((response) => {
       if (response.data === "SUCCESS") {
         console.log("Status Code : ", response.status);
@@ -58,7 +60,7 @@ export default function SearchProductList({ items }) {
                 <a
                   className="btn btn-light action-button default-button favourites"
                   role="button"
-                  onClick={() => addfavourites(item.id)}
+                  onClick={() => addfavourites(item._id)}
                 >
                   Add to Favourites
                 </a>

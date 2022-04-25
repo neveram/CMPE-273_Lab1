@@ -51,6 +51,8 @@ export default function Update() {
     //set the with credentials to true
     axios.defaults.withCredentials = true;
     //make a post request with the user data
+    axios.defaults.headers.common["authorization"] =
+      localStorage.getItem("token");
     axios.post(serverUrl + "/userupdate", bodyFormData).then((response) => {
       console.log(response);
       if (response.data === "SUCCESS") {
@@ -80,7 +82,7 @@ export default function Update() {
   return (
     <>
       {submit ? <Navigate to="/profile" /> : ""}
-      <Navbar />
+      {/* <Navbar /> */}
       <h1 className="offset-1">Edit Profile</h1>
       <div className="container profile profile-view" id="profile">
         <div className="row">
@@ -192,6 +194,7 @@ export default function Update() {
                   <textarea
                     className="form-control"
                     value={address}
+                    data-testid="address"
                     onChange={(e) => setAddress(e.target.value)}
                   ></textarea>
                 </div>
